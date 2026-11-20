@@ -19,9 +19,12 @@ export class Navbar {
     }
   }
   protected onIncrement() {
-
+    this.count.update((value) => value + 1)
   }
   protected onDecrement() {
-
+    this.count.update((value) => value - 1)
+  }
+  protected onReset() {
+    this.count.set(0)
   }
 }
