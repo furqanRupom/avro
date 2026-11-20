@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   imports: [],
@@ -10,7 +10,7 @@ export class Navbar {
   protected msg = "Welcome to Avro. Hope you will see great experience here :)"
   protected isDisabled = false
   protected count = signal(0)
-
+  protected doubleCount = computed(() => this.count() * 2)
   protected onClick() {
     console.log("Redirecting to discount page.......")
     this.isDisabled = !this.isDisabled

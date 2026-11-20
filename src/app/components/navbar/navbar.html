@@ -9,7 +9,10 @@
 <p class="text-xl font-thin text-center pt-4">Total Discount you Want</p>
 <div class="flex justify-center space-x-5 items-center pt-12">
   <button class="w-fit px-5 py-2 bg-pink-500 font-bold text-2xl rounded-3xl cursor-pointer" (click)="onIncrement()">+</button>
-  <p class="border border-pink-500 rounded-3xl p-2 text-xl">{{count()}}% disc</p>
+  <div>
+    <p class="border border-pink-500 rounded-3xl p-2 text-xl">{{count()}}% disc</p>
+    <p class="border border-pink-500 rounded-3xl p-2 text-xl">{{doubleCount()}}% double disc</p>
+  </div>
   <button class="w-fit px-5 py-2 bg-purple-500 font-bold text-2xl rounded-3xl cursor-pointer" (click)="onDecrement()">-</button>
   <button class="w-fit px-5 py-2 bg-rose-500 font-bold text-2xl rounded-3xl cursor-pointer" (click)="onReset()">Reset</button>
 </div>
