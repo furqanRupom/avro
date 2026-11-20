@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.css',
   templateUrl: './navbar.html',
 })
-export class Navbar {}
+export class Navbar {
+  protected msg = "Welcome to Avro. Hope you will see great experience here :)"
+  protected isDisabled = false
+}
