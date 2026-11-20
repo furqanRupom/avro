@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 export class Navbar {
   protected msg = "Welcome to Avro. Hope you will see great experience here :)"
   protected isDisabled = false
+
+  protected onClick() {
+    console.log("Redirecting to discount page.......")
+    this.isDisabled = !this.isDisabled
+    if (this.isDisabled) {
+      this.msg = this.msg + " Your discount request is processing..."
+    }
+  }
 }

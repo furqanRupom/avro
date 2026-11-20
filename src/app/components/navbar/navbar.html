@@ -2,5 +2,5 @@
 
 <p class="text-xl font-thin text-center">{{msg}}</p>
 <div class="flex justify-center items-center py-3">
-  <button [disabled]="isDisabled" class="px-7 py-3 bg-pink-600 text-lg mx-auto text-center cursor-pointer rounded-3xl font-semibold text-white hover:scroll-50 transition-all ease-in-out">20% Disc. Get Now</button>
+  <button [disabled]="isDisabled" (click)="onClick()" class="px-7 py-3 bg-pink-600 text-lg mx-auto text-center cursor-pointer rounded-3xl font-semibold text-white hover:scroll-50 transition-all ease-in-out">20% Disc. Get Now</button>
 </div>
