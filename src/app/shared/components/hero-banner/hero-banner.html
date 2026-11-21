@@ -1,0 +1,51 @@
+<section
+  class="relative flex min-h-[520px] items-center overflow-hidden bg-cover bg-center sm:min-h-[600px]"
+  style="background-image: url('https://images.pexels.com/photos/8410989/pexels-photo-8410989.jpeg')"
+>
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black/55"></div>
+
+  <!-- Hero Content -->
+  <div class="relative mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 lg:px-8">
+
+    <div class="max-w-2xl text-white">
+
+      <span class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold tracking-widest text-white backdrop-blur-sm">
+        WELCOME TO AVRO
+      </span>
+
+      <h1 class="mt-6 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-7xl">
+        Everything You Need,
+        <span class="text-[var(--mat-sys-primary)]">
+          All in One Place.
+        </span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+        Discover quality products, explore everyday essentials, and enjoy a
+        better shopping experience with Avro.
+      </p>
+
+      <!-- Buttons -->
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+
+        <a
+          routerLink="/products"
+          class="inline-flex items-center gap-2 rounded-lg bg-[var(--mat-sys-primary)] px-6 py-3.5 text-sm font-semibold text-white transition hover:opacity-90"
+        >
+          Explore Products
+          <mat-icon>arrow_forward</mat-icon>
+        </a>
+
+        <a
+          routerLink="/categories"
+          class="inline-flex items-center gap-2 rounded-lg border border-white/50 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white hover:text-gray-900"
+        >
+          Browse Categories
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>

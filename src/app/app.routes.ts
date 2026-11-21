@@ -5,6 +5,12 @@ export const routes: Routes = [
   {
     path: '',
     component: ContentLayout,
-    children: []
+    children: [
+        {
+              path: '',
+              loadComponent: () =>
+                import('./features/home/pages/home-page/home-page').then((m) => m.HomePage),
+            },
+    ]
  },
 ];

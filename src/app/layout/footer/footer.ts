@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink,RouterLinkActive } from '@angular/router';
 @Component({
-  imports: [RouterLink,RouterLinkActive,MatIconModule],
+  imports: [RouterLink,MatIconModule],
   selector: 'app-footer',
   styleUrl: './footer.css',
   templateUrl: './footer.html',
