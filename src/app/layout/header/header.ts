@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  imports: [],
   selector: 'app-header',
-  styleUrl: './header.css',
+  imports: [RouterLink, RouterLinkActive, MatIconModule],
   templateUrl: './header.html',
+  styleUrl: './header.css',
 })
 export class Header {}
