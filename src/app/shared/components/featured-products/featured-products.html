@@ -1,0 +1,157 @@
+<section class="mx-auto mt-20 max-w-7xl px-4 sm:px-6 lg:px-8">
+
+  <!-- Section Heading -->
+  <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+
+    <div>
+      <span class="mb-2 block text-sm font-bold uppercase tracking-widest text-primary">
+        Our Collection
+      </span>
+
+      <h2 class="text-3xl font-extrabold sm:text-4xl">
+        Featured Products
+      </h2>
+
+      <p class="mt-3 text-base opacity-75">
+        Explore some of our handpicked products.
+      </p>
+    </div>
+
+    <a mat-button routerLink="/products" color="primary">
+      View All Products
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </a>
+
+  </div>
+
+  <!-- Product Cards -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+    <!-- Product 1 -->
+    <mat-card appearance="outlined" class="overflow-hidden">
+
+      <div class="relative aspect-square overflow-hidden bg-surface-container">
+        <img
+          src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=700"
+          alt="Traditional handcrafted textile"
+          class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+
+        <span class="absolute top-4 left-4 rounded-full bg-primary-container px-3 py-1 text-xs font-bold text-on-primary-container">
+          Featured
+        </span>
+      </div>
+
+      <mat-card-content class="p-5!">
+
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
+          Traditional Crafts
+        </p>
+
+        <h3 class="text-xl font-bold">
+          Handcrafted Textile
+        </h3>
+
+        <p class="mt-2 text-sm opacity-75">
+          Beautifully crafted traditional textile made with care and detail.
+        </p>
+
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-xl font-extrabold">
+            ৳ 1,250
+          </span>
+
+          <button mat-icon-button aria-label="View Handcrafted Textile">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Product 2 -->
+    <mat-card appearance="outlined" class="overflow-hidden">
+
+      <div class="relative aspect-square overflow-hidden bg-surface-container">
+        <img
+          src="https://images.unsplash.com/photo-1576021182211-9ea8dced3690?w=700"
+          alt="Handcrafted pottery"
+          class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+
+        <span class="absolute top-4 left-4 rounded-full bg-primary-container px-3 py-1 text-xs font-bold text-on-primary-container">
+          Popular
+        </span>
+      </div>
+
+      <mat-card-content class="p-5!">
+
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
+          Handmade Pottery
+        </p>
+
+        <h3 class="text-xl font-bold">
+          Artisan Clay Pot
+        </h3>
+
+        <p class="mt-2 text-sm opacity-75">
+          A timeless handmade clay piece inspired by traditional craftsmanship.
+        </p>
+
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-xl font-extrabold">
+            ৳ 850
+          </span>
+
+          <button mat-icon-button aria-label="View Artisan Clay Pot">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Product 3 -->
+    <mat-card appearance="outlined" class="overflow-hidden">
+
+      <div class="relative aspect-square overflow-hidden bg-surface-container">
+        <img
+          src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=700"
+          alt="Handmade decorative craft"
+          class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+
+        <span class="absolute top-4 left-4 rounded-full bg-primary-container px-3 py-1 text-xs font-bold text-on-primary-container">
+          New Arrival
+        </span>
+      </div>
+
+      <mat-card-content class="p-5!">
+
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
+          Home Decor
+        </p>
+
+        <h3 class="text-xl font-bold">
+          Handmade Decorative Piece
+        </h3>
+
+        <p class="mt-2 text-sm opacity-75">
+          Add a touch of traditional artistry to your living space.
+        </p>
+
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-xl font-extrabold">
+            ৳ 1,500
+          </span>
+
+          <button mat-icon-button aria-label="View Handmade Decorative Piece">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</section>

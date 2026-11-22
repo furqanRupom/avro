@@ -1,0 +1,114 @@
+<section class="mx-auto my-16 max-w-7xl px-4 sm:mt-20 sm:px-6 lg:px-8">
+
+  <mat-card appearance="outlined" class="overflow-hidden rounded-3xl!">
+
+    <div class="grid grid-cols-1 items-stretch lg:grid-cols-12">
+
+      <!-- Artisan Photo -->
+      <div class="relative min-h-80 bg-surface-container lg:col-span-5 lg:min-h-[420px]">
+
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX-igvnf0Q6dW90045HoxCeS_5j0i_bKJs4HpfIVMUBSbi7iBmJdlqVE-ZV4ZLJjEF1uq9CGZfTe88z8_B1Au5YKocBewEQMYDDyzLtTTIlqcz4cu0Jt3C8HSg5AMVazBEOPLrWpM7MQgPjKZ6mOjkGoLCXYeUfwrJtqImAingC0fVkqR_JWbwywPhg586G1m1jOGUEYZENmA2FSLjGHHIUz3YM6pNqVTYVyrVOXQ"
+          alt="Portrait of master weaver Alim Uddin in Tangail workshop"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+
+        <!-- Mobile Image Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent lg:hidden"></div>
+
+        <div class="absolute right-4 bottom-4 left-4 text-white lg:hidden">
+          <h3 class="text-xl font-bold">
+            Alim Uddin
+          </h3>
+
+          <p class="mt-1 text-sm text-white/80">
+            Master Weaver · 42 Years of Jamdani Heritage
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Narrative Content -->
+      <div class="flex flex-col justify-center p-6 sm:p-10 lg:col-span-7 lg:p-12">
+
+        <!-- Badge -->
+        <div class="mb-4 flex w-fit items-center gap-2 rounded-full bg-primary-container px-3 py-2 text-on-primary-container">
+
+          <mat-icon class="text-base">
+            verified_user
+          </mat-icon>
+
+          <span class="text-xs font-bold uppercase tracking-wider">
+            Maker Spotlight & Fair-Trade Guarantee
+          </span>
+
+        </div>
+
+        <!-- Desktop Title -->
+        <h2 class="hidden text-2xl font-extrabold lg:block lg:text-3xl">
+          Master Weaver Alim Uddin
+        </h2>
+
+        <p class="mt-2 mb-4 hidden text-sm font-semibold opacity-75 lg:block">
+          Dhopakhali Village, Tangail · Preserving 42 Years of Jamdani Heritage
+        </p>
+
+        <!-- Quote -->
+        <blockquote class="my-3 border-l-4 border-primary pl-4">
+
+          <p class="text-base leading-relaxed italic opacity-80 sm:text-lg">
+            "Every floral motif (buti) in my Jamdani takes three days of
+            focused hand-twisting. Through Avro's cooperative, my family
+            receives fair and dignified wages within 24 hours of each
+            piece finding a home."
+          </p>
+
+        </blockquote>
+
+        <!-- Fair Trade Pledge -->
+        <mat-card appearance="outlined" class="mt-6 rounded-2xl!">
+
+          <mat-card-content class="flex flex-col justify-between gap-4 p-4! sm:flex-row sm:items-center sm:p-5!">
+
+            <div class="flex items-center gap-3.5">
+
+              <div class="grid size-12 shrink-0 place-items-center rounded-xl bg-secondary-container text-on-secondary-container">
+                <mat-icon class="text-2xl">
+                  handshake
+                </mat-icon>
+              </div>
+
+              <div>
+                <h3 class="text-sm font-bold">
+                  Our Direct Craft Pledge
+                </h3>
+
+                <p class="mt-1 text-xs leading-relaxed opacity-75">
+                  72% of each textile sale goes directly into the
+                  weaver's rural account.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Action -->
+            <a
+              mat-flat-button
+              color="primary"
+              routerLink="/weaver-stories"
+              class="shrink-0 mt-3"
+            >
+              Read Weaver Stories
+            </a>
+
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+</section>
