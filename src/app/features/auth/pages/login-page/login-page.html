@@ -1,1 +1,128 @@
-<p>login-page works!</p>
+
+
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
+
+  <mat-card class="w-full max-w-md !rounded-2xl !shadow-sm !border !border-gray-200">
+    <mat-card-content class="!p-6 sm:!p-8">
+
+      <!-- Header -->
+      <div class="mb-8 text-center">
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+          Welcome back
+        </h1>
+
+        <p class="mt-2 text-sm text-gray-500">
+          Sign in to continue shopping at Avro Shop.
+        </p>
+      </div>
+
+      <!-- Login Form -->
+      <form [formRoot]="loginForm" class="flex flex-col gap-4">
+
+        <!-- Form Error -->
+        @if (loginForm().errors().length) {
+          <div class="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            <mat-icon class="!text-xl">error_outline</mat-icon>
+            <span>{{ loginForm().errors()[0].message }}</span>
+          </div>
+        }
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email address</mat-label>
+
+          <mat-icon matPrefix>mail_outline</mat-icon>
+
+          <input
+            matInput
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            [formField]="loginForm.email"
+          />
+
+          @if (loginForm.email().touched() && loginForm.email().invalid()) {
+            @for (error of loginForm.email().errors(); track error) {
+              <mat-error>{{ error.message }}</mat-error>
+            }
+          }
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+
+          <mat-icon matPrefix>lock_outline</mat-icon>
+
+          <input
+            matInput
+            [type]="showPassword() ? 'text' : 'password'"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            [formField]="loginForm.password"
+          />
+
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="showPassword.update(value => !value)"
+            [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+          >
+            <mat-icon>
+              {{ showPassword() ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
+          </button>
+
+          @if (loginForm.password().touched() && loginForm.password().invalid()) {
+            @for (error of loginForm.password().errors(); track error) {
+              <mat-error>{{ error.message }}</mat-error>
+            }
+          }
+        </mat-form-field>
+
+        <!-- Forgot Password -->
+        <div class="flex justify-end -mt-3">
+          <a
+            routerLink="/auth/forgot-password"
+            class="text-sm font-medium text-primary hover:underline"
+          >
+            Forgot password?
+          </a>
+        </div>
+
+        <!-- Submit -->
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="!h-11 !w-full !rounded-lg"
+          [disabled]="loginForm().submitting()"
+        >
+          @if (loginForm().submitting()) {
+            <mat-spinner diameter="20" />
+          } @else {
+            Sign in
+          }
+        </button>
+
+      </form>
+
+      <!-- Footer -->
+      <div class="mt-7 border-t border-gray-100 pt-6 text-center">
+        <p class="text-sm text-gray-500">
+          New to Avro Shop?
+
+          <a
+            routerLink="/auth/register"
+            class="font-semibold text-primary hover:underline"
+          >
+            Create an account
+          </a>
+        </p>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

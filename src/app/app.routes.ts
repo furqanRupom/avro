@@ -5,12 +5,10 @@ export const routes: Routes = [
   {
     path: '',
     component: ContentLayout,
-    children: [
-        {
-              path: '',
-              loadComponent: () =>
-                import('./features/home/pages/home-page/home-page').then((m) => m.HomePage),
-            },
-    ]
- },
+    loadChildren:() => import('./features/home/home.routes').then((m) => m.homeRoutes)
+  },
+  {
+    path: "auth",
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.authRoutes)
+  }
 ];
