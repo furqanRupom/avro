@@ -7,6 +7,8 @@ import {form,FormField,required,email,FormRoot} from "@angular/forms/signals"
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { firstValueFrom } from 'rxjs';
+import { Auth } from '../../../../core/services/auth';
 @Component({
   imports: [MatFormFieldModule,MatInputModule,MatButtonModule,MatIconModule,MatButtonModule,MatCardModule,RouterLink,MatProgressSpinnerModule,FormField,FormRoot],
   selector: 'app-login-page',
@@ -14,8 +16,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   templateUrl: './login-page.html',
 })
 export class LoginPage {
-  // private readonly auth = inject(Auth) : TODO: We will add auth server later
+  private readonly auth = inject(Auth)
   private readonly router = inject(Router)
+
 
   protected readonly model = signal({ email: "", password: "" })
 
@@ -32,8 +35,12 @@ export class LoginPage {
       submission: {
         action: async (formRef) => {
           const { email, password } = formRef().value()
-          // TOOD : we will work on it
-          console.log(email,password)
+          try {
+            await firstValueFrom(this.auth.login(email, password))
+            void this.router.navigate(['/'])
+          } catch  {
+            return {kind : "serverError", message:"Invalid credentials"}
+          }
           return null
         }
       }

@@ -1,7 +1,8 @@
 import { Role } from "../../features/auth/role.model"
 
 export interface User {
-  sub: string // id
+  id: string // id
+  name:string
   role: Role
   email:string
 }
