@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Service, signal } from '@angular/core';
-import { User } from '../models/user.model';
+import { User, UserResponse } from '../models/user.model';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { RegisterRequest } from '../models/register-request.model';
 import { ROLES } from '../../features/auth/role.model';
@@ -15,10 +15,10 @@ export class Auth {
   public readonly isAdmin = computed<boolean>(() => this.user()?.role == ROLES.ADMIN)
 
   // GET : auth/me - fetched authenticated  User Info API
-  public init(): Observable<User | null> {
-    return this.http.get<User>("/auth/me").pipe(
+  public init(): Observable<UserResponse | null> {
+    return this.http.get<UserResponse>("/auth/me").pipe(
       tap((user) => {
-        this.user.set(user)
+        this.user.set(user.data)
       }),
       catchError(() => {
         this.user.set(null);
