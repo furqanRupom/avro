@@ -19,6 +19,7 @@ export class Auth {
     return this.http.get<UserResponse>("/auth/me").pipe(
       tap((user) => {
         this.user.set(user.data)
+        console.log(user.data)
       }),
       catchError(() => {
         this.user.set(null);

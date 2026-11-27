@@ -1,24 +1,177 @@
-<mat-card appearance="outlined">
-  <mat-card-header>
-    <mat-card-title>{{ user()!.name }}</mat-card-title>
-    <mat-card-subtitle>{{ user()!.role }}</mat-card-subtitle>
-  </mat-card-header>
+@if (user(); as currentUser) {
+  <div class="mx-auto max-w-4xl space-y-6 p-4 sm:p-6">
 
-  <mat-card-content>
-    <p>{{ user()!.email }}</p>
-  </mat-card-content>
+    <!-- Header card: banner + avatar + identity -->
+    <mat-card appearance="outlined" class="overflow-hidden">
+      <!-- Banner uses the Material primary color -->
+      <div class="h-28 bg-secondary sm:h-32"></div>
 
-  <mat-card-actions align="end">
-    <button
-      mat-button
-      [disabled]="IsLoggingOut()"
-      (click)="logout()"
-    >
-      @if (IsLoggingOut()) {
-        <mat-spinner diameter="18"></mat-spinner>
-      } @else {
-        Logout
-      }
-    </button>
-  </mat-card-actions>
-</mat-card>
+      <mat-card-content class="px-5! pb-6! sm:px-8!">
+        <div class="-mt-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-6">
+
+          <!-- Avatar -->
+          <div
+            class="flex size-24 shrink-0 items-center justify-center rounded-full border-4 border-(--mat-sys-surface) bg-(--mat-sys-primary) text-4xl font-semibold text-(--mat-sys-on-primary)"
+          >
+            {{ currentUser.name.charAt(0).toUpperCase() }}
+          </div>
+
+          <!-- Name, email, chips -->
+          <div class="min-w-0 flex-1">
+            <h1 class="truncate text-2xl font-semibold">{{ currentUser.name }}</h1>
+            <p class="mt-0.5 break-all text-sm opacity-70">{{ currentUser.email }}</p>
+
+            <mat-chip-set class="mt-3" aria-label="Account summary">
+              <mat-chip>
+                <mat-icon matChipAvatar>badge</mat-icon>
+                {{ currentUser.role }}
+              </mat-chip>
+
+              <mat-chip>
+                <mat-icon matChipAvatar>
+                  {{ currentUser.isActive ? 'check_circle' : 'cancel' }}
+                </mat-icon>
+                {{ currentUser.isActive ? 'Active' : 'Inactive' }}
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+
+          <!-- Logout -->
+          <button
+            mat-flat-button
+            color="warn"
+            class="self-start sm:self-end"
+            [disabled]="IsLoggingOut()"
+            (click)="logout()"
+          >
+            @if (IsLoggingOut()) {
+              <mat-spinner diameter="18" />
+            } @else {
+              <mat-icon>logout</mat-icon>
+            }
+            Log out
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+      <!-- Personal information -->
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>person</mat-icon>
+          <mat-card-title>Personal information</mat-card-title>
+          <mat-card-subtitle>Your basic details</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="pt-2!">
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>badge</mat-icon>
+              <span matListItemTitle>{{ currentUser.name }}</span>
+              <span matListItemLine>Full name</span>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-icon matListItemIcon>mail</mat-icon>
+              <span matListItemTitle class="break-all">{{ currentUser.email }}</span>
+              <span matListItemLine>Email address</span>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-icon matListItemIcon>call</mat-icon>
+              <span matListItemTitle>{{ currentUser.phone || 'Not provided' }}</span>
+              <span matListItemLine>Phone number</span>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Account information -->
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>manage_accounts</mat-icon>
+          <mat-card-title>Account information</mat-card-title>
+          <mat-card-subtitle>Role and status</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="pt-2!">
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
+              <span matListItemTitle>{{ currentUser.role }}</span>
+              <span matListItemLine>Role</span>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-icon matListItemIcon>
+                {{ currentUser.isActive ? 'check_circle' : 'cancel' }}
+              </mat-icon>
+              <span matListItemTitle>{{ currentUser.isActive ? 'Active' : 'Inactive' }}</span>
+              <span matListItemLine>Status</span>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-icon matListItemIcon>fingerprint</mat-icon>
+              <span matListItemTitle class="font-mono text-sm">{{ currentUser.id }}</span>
+              <span matListItemLine>Account ID</span>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Address information -->
+      <mat-card appearance="outlined" class="md:col-span-2">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>location_on</mat-icon>
+          <mat-card-title>Delivery address</mat-card-title>
+          <mat-card-subtitle>Where we send your orders</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="pt-2!">
+          @if (currentUser.address; as address) {
+            <mat-list class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              <mat-list-item>
+                <mat-icon matListItemIcon>public</mat-icon>
+                <span matListItemTitle>{{ address.division || 'Not provided' }}</span>
+                <span matListItemLine>Division</span>
+              </mat-list-item>
+
+              <mat-list-item>
+                <mat-icon matListItemIcon>location_city</mat-icon>
+                <span matListItemTitle>{{ address.district || 'Not provided' }}</span>
+                <span matListItemLine>District</span>
+              </mat-list-item>
+
+              <mat-list-item>
+                <mat-icon matListItemIcon>map</mat-icon>
+                <span matListItemTitle>{{ address.area || 'Not provided' }}</span>
+                <span matListItemLine>Area</span>
+              </mat-list-item>
+
+              <mat-list-item>
+                <mat-icon matListItemIcon>signpost</mat-icon>
+                <span matListItemTitle>{{ address.street || 'Not provided' }}</span>
+                <span matListItemLine>Street</span>
+              </mat-list-item>
+
+              <mat-list-item>
+                <mat-icon matListItemIcon>markunread_mailbox</mat-icon>
+                <span matListItemTitle>{{ address.postalCode || 'Not provided' }}</span>
+                <span matListItemLine>Postal code</span>
+              </mat-list-item>
+            </mat-list>
+          } @else {
+            <div class="flex flex-col items-center py-8 text-center">
+              <mat-icon class="mb-2 size-12! text-5xl! opacity-40">location_off</mat-icon>
+              <p class="font-medium">No delivery address yet</p>
+              <p class="mt-1 text-sm opacity-70">Add an address so we know where to deliver.</p>
+            </div>
+          }
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+}

@@ -5,9 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
-  imports: [MatCardModule,MatButtonModule,MatIconModule,MatProgressSpinnerModule],
+  imports: [MatCardModule,MatButtonModule,MatIconModule,MatProgressSpinnerModule,MatDividerModule,MatChipsModule,MatListModule],
   selector: 'app-profile-page',
   styleUrl: './profile-page.css',
   templateUrl: './profile-page.html',
