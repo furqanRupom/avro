@@ -1,77 +1,124 @@
-   <header class="sticky top-0 z-50 border-b border-gray-200 bg-white">
-     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+<header
+  class="sticky top-0 z-50 border-b border-(--mat-sys-outline-variant) bg-(--mat-sys-surface)/85 backdrop-blur"
+>
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
 
-       <!-- Brand -->
-       <a
-         routerLink="/"
-         class="text-4xl font-bold tracking-tight text-[var(--mat-sys-primary)]"
-       >
-         Avro<span class="text-gray-900">.</span>
-       </a>
+    <!-- Left: mobile menu + brand -->
+    <div class="flex items-center gap-2">
+      <button
+        mat-icon-button
+        class="md:hidden"
+        aria-label="Open navigation menu"
+        [matMenuTriggerFor]="navMenu"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
 
-       <!-- Desktop Navigation -->
-       <nav class="hidden items-center gap-8 md:flex">
-         <a
-           routerLink="/"
-           routerLinkActive="font-semibold text-[var(--mat-sys-primary)]"
-           [routerLinkActiveOptions]="{ exact: true }"
-           class="text-xl text-gray-600 transition hover:text-[var(--mat-sys-primary)]"
-         >
-           Home
-         </a>
+      <a
+        routerLink="/"
+        class="text-2xl font-bold tracking-tight text-(--mat-sys-primary)"
+      >
+        Avro<span class="text-(--mat-sys-on-surface)">.</span>
+      </a>
+    </div>
 
-         <a
-           routerLink="/products"
-           routerLinkActive="font-semibold text-[var(--mat-sys-primary)]"
-           class="text-xl text-gray-600 transition hover:text-[var(--mat-sys-primary)]"
-         >
-           Products
-         </a>
+    <!-- Desktop navigation -->
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
+      @for (link of navLinks; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="bg-(--mat-sys-secondary-container) text-(--mat-sys-on-secondary-container)"
+          [routerLinkActiveOptions]="{ exact: link.exact ?? false }"
+          class="rounded-full px-4 py-2 text-sm font-medium text-(--mat-sys-on-surface-variant) transition-colors hover:bg-(--mat-sys-surface-container-high)"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
 
-         <a
-           routerLink="/categories"
-           routerLinkActive="font-semibold text-[var(--mat-sys-primary)]"
-           class="text-xl text-gray-600 transition hover:text-[var(--mat-sys-primary)]"
-         >
-           Categories
-         </a>
+    <!-- Actions -->
+    <div class="flex items-center gap-1 sm:gap-2">
+      <a
+        mat-icon-button
+        routerLink="/wishlist"
+        aria-label="Wishlist"
+      >
+        <mat-icon>favorite_border</mat-icon>
+      </a>
 
-         <a
-           routerLink="/about"
-           routerLinkActive="font-semibold text-[var(--mat-sys-primary)]"
-           class="text-xl text-gray-600 transition hover:text-[var(--mat-sys-primary)]"
-         >
-           About Us
-         </a>
-       </nav>
+      <a
+        mat-icon-button
+        routerLink="/cart"
+        aria-label="Shopping cart"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </a>
 
-       <!-- Actions -->
-       <div class="flex items-center gap-3">
+      @if (user(); as currentUser) {
+        <!-- User dropdown trigger -->
+        <button
+          type="button"
+          class="ml-1 flex items-center gap-2 rounded-full p-1 pr-2 transition-colors hover:bg-(--mat-sys-surface-container-high) focus-visible:outline-2 focus-visible:outline-(--mat-sys-primary)"
+          aria-label="Open account menu"
+          [matMenuTriggerFor]="userMenu"
+        >
+          <span
+            class="flex size-9 items-center justify-center rounded-full bg-(--mat-sys-primary) text-sm font-semibold text-(--mat-sys-on-primary)"
+          >
+            {{ currentUser.name.charAt(0).toUpperCase() }}
+          </span>
+          <mat-icon class="hidden text-(--mat-sys-on-surface-variant) sm:block">
+            expand_more
+          </mat-icon>
+        </button>
 
-         <a
-           routerLink="/wishlist"
-           aria-label="Wishlist"
-           class="flex size-10 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100 hover:text-[var(--mat-sys-primary)]"
-         >
-           <mat-icon>favorite_border</mat-icon>
-         </a>
+        <mat-menu #userMenu="matMenu" xPosition="before">
+          <!-- Identity header -->
+          <div class="min-w-64 px-4 py-3" (click)="$event.stopPropagation()">
+            <p class="truncate text-sm font-semibold">{{ currentUser.name }}</p>
+            <p class="truncate text-xs text-(--mat-sys-on-surface-variant)">
+              {{ currentUser.email }}
+            </p>
+          </div>
 
-         <a
-           routerLink="/cart"
-           aria-label="Shopping cart"
-           class="flex size-10 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100 hover:text-[var(--mat-sys-primary)]"
-         >
-           <mat-icon>shopping_cart</mat-icon>
-         </a>
+          <mat-divider />
 
-         <a
-           routerLink="/auth/login"
-           class="hidden items-center gap-2 rounded-lg bg-[var(--mat-sys-primary)] px-4 py-2 text-xl font-medium text-white transition hover:opacity-90 sm:flex"
-         >
-           <mat-icon class="!text-[20px]">person_outline</mat-icon>
-           Sign In
-         </a>
+          @for (item of accountLinks; track item.path) {
+            <a mat-menu-item [routerLink]="item.path">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+            </a>
+          }
 
-       </div>
-     </div>
-   </header>
+          <mat-divider />
+
+          <button
+            mat-menu-item
+            type="button"
+            [disabled]="IsLoggingOut()"
+            (click)="logout()"
+          >
+            <mat-icon class="text-(--mat-sys-error)!">logout</mat-icon>
+            <span class="text-(--mat-sys-error)">
+              {{ IsLoggingOut() ? 'Logging out…' : 'Log out' }}
+            </span>
+          </button>
+        </mat-menu>
+      } @else {
+        <a mat-flat-button routerLink="/auth/login" class="ml-1">
+          <mat-icon>person_outline</mat-icon>
+          Sign in
+        </a>
+      }
+    </div>
+  </div>
+</header>
+
+<!-- Mobile navigation menu -->
+<mat-menu #navMenu="matMenu">
+  @for (link of navLinks; track link.path) {
+    <a mat-menu-item [routerLink]="link.path">
+      <span>{{ link.label }}</span>
+    </a>
+  }
+</mat-menu>
