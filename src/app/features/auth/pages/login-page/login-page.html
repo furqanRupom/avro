@@ -1,38 +1,93 @@
+<div class="grid min-h-dvh lg:grid-cols-2">
 
+  <!-- Brand panel (desktop only) -->
+  <aside
+    class="relative hidden flex-col justify-between overflow-hidden bg-(--mat-sys-primary) p-12 text-(--mat-sys-on-primary) lg:flex"
+  >
+    <!-- Decorative shapes -->
+    <div
+      class="pointer-events-none absolute -top-24 -right-24 size-96 rounded-full bg-(--mat-sys-on-primary)/10"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute -bottom-32 -left-20 size-112 rounded-full bg-(--mat-sys-on-primary)/10"
+      aria-hidden="true"
+    ></div>
 
-<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
+    <!-- Logo -->
+    <a routerLink="/" class="relative text-3xl font-bold tracking-tight">
+      Avro<span class="opacity-60">.</span>
+    </a>
 
-  <mat-card class="w-full max-w-md !rounded-2xl !shadow-sm !border !border-gray-200">
-    <mat-card-content class="!p-6 sm:!p-8">
+    <!-- Quote -->
+    <figure class="relative max-w-lg">
+      <mat-icon class="mb-4 size-10! text-4xl! opacity-60" aria-hidden="true">
+        format_quote
+      </mat-icon>
 
-      <!-- Header -->
-      <div class="mb-8 text-center">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+      <blockquote class="text-2xl leading-snug font-medium text-balance">
+        We started Avro with one idea: shopping should feel effortless,
+        trustworthy, and a little bit delightful every single time.
+      </blockquote>
+
+      <figcaption class="mt-8 flex items-center gap-3">
+        <span
+          class="flex size-11 items-center justify-center rounded-full bg-(--mat-sys-on-primary)/15 text-base font-semibold"
+        >
+          FAB
+        </span>
+        <div>
+          <p class="text-sm font-semibold">Furqan Ahmad Bhuiyan</p>
+          <p class="text-sm opacity-70">Founder &amp; CEO, Avro Shop</p>
+        </div>
+      </figcaption>
+    </figure>
+
+    <p class="relative text-sm opacity-60">
+      &copy; {{ currentYear }} Avro Shop. All rights reserved.
+    </p>
+  </aside>
+
+  <!-- Form panel -->
+  <main class="flex items-center justify-center bg-(--mat-sys-surface) px-4 py-10 sm:px-8">
+    <div class="w-full max-w-md">
+
+      <!-- Mobile logo -->
+      <a
+        routerLink="/"
+        class="mb-10 block text-3xl font-bold tracking-tight text-(--mat-sys-primary) lg:hidden"
+      >
+        Avro<span class="text-(--mat-sys-on-surface)">.</span>
+      </a>
+
+      <!-- Heading -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold tracking-tight text-(--mat-sys-on-surface)">
           Welcome back
         </h1>
-
-        <p class="mt-2 text-sm text-gray-500">
+        <p class="mt-2 text-(--mat-sys-on-surface-variant)">
           Sign in to continue shopping at Avro Shop.
         </p>
       </div>
 
-      <!-- Login Form -->
-      <form [formRoot]="loginForm" class="flex flex-col gap-4">
+      <!-- Login form -->
+      <form [formRoot]="loginForm" class="flex flex-col gap-5">
 
-        <!-- Form Error -->
+        <!-- Form-level error -->
         @if (loginForm().errors().length) {
-          <div class="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-            <mat-icon class="!text-xl">error_outline</mat-icon>
-            <span>{{ loginForm().errors()[0].message }}</span>
+          <div
+            role="alert"
+            class="flex items-start gap-3 rounded-xl bg-(--mat-sys-error-container) p-4 text-sm text-(--mat-sys-on-error-container)"
+          >
+            <mat-icon class="shrink-0">error</mat-icon>
+            <span class="pt-0.5">{{ loginForm().errors()[0].message }}</span>
           </div>
         }
 
         <!-- Email -->
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
           <mat-label>Email address</mat-label>
-
-          <mat-icon matPrefix>mail_outline</mat-icon>
-
+          <mat-icon matPrefix class="mr-2 ml-3">mail</mat-icon>
           <input
             matInput
             type="email"
@@ -49,11 +104,9 @@
         </mat-form-field>
 
         <!-- Password -->
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="w-full">
           <mat-label>Password</mat-label>
-
-          <mat-icon matPrefix>lock_outline</mat-icon>
-
+          <mat-icon matPrefix class="mr-2 ml-3">lock</mat-icon>
           <input
             matInput
             [type]="showPassword() ? 'text' : 'password'"
@@ -68,10 +121,9 @@
             type="button"
             (click)="showPassword.update(value => !value)"
             [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            [attr.aria-pressed]="showPassword()"
           >
-            <mat-icon>
-              {{ showPassword() ? 'visibility_off' : 'visibility' }}
-            </mat-icon>
+            <mat-icon>{{ showPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
 
           @if (loginForm.password().touched() && loginForm.password().invalid()) {
@@ -81,11 +133,11 @@
           }
         </mat-form-field>
 
-        <!-- Forgot Password -->
-        <div class="flex justify-end -mt-3">
+        <!-- Forgot password -->
+        <div class="flex justify-end">
           <a
             routerLink="/auth/forgot-password"
-            class="text-sm font-medium text-primary hover:underline"
+            class="text-sm font-medium text-(--mat-sys-primary) hover:underline"
           >
             Forgot password?
           </a>
@@ -94,35 +146,32 @@
         <!-- Submit -->
         <button
           mat-flat-button
-          color="primary"
           type="submit"
-          class="!h-11 !w-full !rounded-lg"
+          class="h-12! w-full text-base!"
           [disabled]="loginForm().submitting()"
         >
           @if (loginForm().submitting()) {
-            <mat-spinner diameter="20" />
+            <mat-spinner
+              matButtonIcon
+              diameter="20"
+              class="[--mat-progress-spinner-active-indicator-color:currentColor]"
+            />
           } @else {
             Sign in
           }
         </button>
-
       </form>
 
       <!-- Footer -->
-      <div class="mt-7 border-t border-gray-100 pt-6 text-center">
-        <p class="text-sm text-gray-500">
-          New to Avro Shop?
-
-          <a
-            routerLink="/auth/register"
-            class="font-semibold text-primary hover:underline"
-          >
-            Create an account
-          </a>
-        </p>
-      </div>
-
-    </mat-card-content>
-  </mat-card>
-
+      <p class="mt-8 text-center text-sm text-(--mat-sys-on-surface-variant)">
+        New to Avro Shop?
+        <a
+          routerLink="/auth/register"
+          class="font-semibold text-(--mat-sys-primary) hover:underline"
+        >
+          Create an account
+        </a>
+      </p>
+    </div>
+  </main>
 </div>

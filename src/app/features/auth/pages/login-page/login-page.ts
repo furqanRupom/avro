@@ -23,6 +23,7 @@ export class LoginPage {
   protected readonly model = signal({ email: "", password: "" })
 
   protected readonly showPassword = signal(false)
+  protected readonly currentYear = new Date().getFullYear();
 
   protected readonly loginForm = form(
     this.model,
